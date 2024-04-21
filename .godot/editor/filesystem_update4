@@ -1,0 +1,11 @@
+res://scene/3/grimoire.tscn
+res://scene/3/hex.tscn
+res://scene/3/groove.tscn
+res://scene/1/god.tscn
+res://scene/1/god.gd
+res://scene/3/grimoire.gd
+res://scene/3/groove.gd
+res://script/Global.gd
+res://scene/3/hex.gd
+res://scene/3/pattern.tscn
+res://scene/3/pattern.gd

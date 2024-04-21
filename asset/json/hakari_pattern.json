@@ -1,0 +1,136 @@
+[
+ {
+  "title": "o",
+  "size": 1,
+  "childs": "f,e",
+  "types": "c",
+  "shifts": "0"
+ },
+ {
+  "title": "g",
+  "size": 1,
+  "childs": "e,b",
+  "types": "w",
+  "shifts": "0"
+ },
+ {
+  "title": "f",
+  "size": 2,
+  "childs": "r,v",
+  "parents": "o",
+  "types": "c,c",
+  "shifts": "0,0"
+ },
+ {
+  "title": "e",
+  "size": 2,
+  "childs": "l,i,r",
+  "parents": "o,g",
+  "types": "c,w",
+  "shifts": "0,0"
+ },
+ {
+  "title": "b",
+  "size": 2,
+  "childs": "i,u",
+  "parents": "g",
+  "types": "w,w",
+  "shifts": "0,0"
+ },
+ {
+  "title": "v",
+  "size": 3,
+  "childs": "m,y,s",
+  "parents": "f",
+  "types": "c,c,c",
+  "shifts": "0,0,1"
+ },
+ {
+  "title": "r",
+  "size": 3,
+  "childs": "q,s,y,c,j",
+  "parents": "r,e",
+  "types": "c,c,w",
+  "shifts": "0,0,1"
+ },
+ {
+  "title": "l",
+  "size": 3,
+  "childs": "q",
+  "parents": "e",
+  "types": "c,w,c",
+  "shifts": "0,0,0"
+ },
+ {
+  "title": "i",
+  "size": 3,
+  "childs": "j,p",
+  "parents": "e,b",
+  "types": "c,w,w",
+  "shifts": "0,0,0"
+ },
+ {
+  "title": "u",
+  "size": 3,
+  "childs": "w,p",
+  "parents": "b",
+  "types": "w,w,w",
+  "shifts": "0,0,1"
+ },
+ {
+  "title": "m",
+  "size": 4,
+  "parents": "v",
+  "types": "c,c,c,c",
+  "shifts": "0,0,1,1"
+ },
+ {
+  "title": "y",
+  "size": 4,
+  "parents": "v,r",
+  "types": "c,c,c",
+  "shifts": "0,0,1"
+ },
+ {
+  "title": "s",
+  "size": 4,
+  "parents": "v,r",
+  "types": "c,c,c,w",
+  "shifts": "0,0,1,-1"
+ },
+ {
+  "title": "q",
+  "size": 4,
+  "parents": "r,l",
+  "types": "c,c,w,c",
+  "shifts": "0,0,1,0"
+ },
+ {
+  "title": "c",
+  "size": 4,
+  "parents": "r",
+  "types": "w,c,c,w",
+  "shifts": "0,0,1,1"
+ },
+ {
+  "title": "j",
+  "size": 4,
+  "parents": "r,i",
+  "types": "c,c,w,w",
+  "shifts": "0,0,1,0"
+ },
+ {
+  "title": "p",
+  "size": 4,
+  "parents": "i,u",
+  "types": "c,w,w,w",
+  "shifts": "0,0,0,1"
+ },
+ {
+  "title": "w",
+  "size": 4,
+  "parents": "u",
+  "types": "w,w,w,w",
+  "shifts": "0,0,1,1"
+ }
+]
