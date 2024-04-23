@@ -1,8 +1,9 @@
-[gd_scene load_steps=5 format=3 uid="uid://b6xt38h3tpi5k"]
+[gd_scene load_steps=6 format=3 uid="uid://b6xt38h3tpi5k"]
 
 [ext_resource type="Script" path="res://scene/1/god.gd" id="1_ceqed"]
 [ext_resource type="PackedScene" uid="uid://cfn47l38cf0x" path="res://scene/3/grimoire.tscn" id="2_0is4b"]
 [ext_resource type="PackedScene" uid="uid://blu22hthbk1uj" path="res://scene/3/groove.tscn" id="3_yuwyp"]
+[ext_resource type="PackedScene" uid="uid://boyno68aw4lb4" path="res://scene/4/book.tscn" id="4_iw03r"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_7paps"]
 
@@ -37,4 +38,7 @@ alignment = 1
 layout_mode = 2
 
 [node name="Groove" parent="HBox" instance=ExtResource("3_yuwyp")]
+layout_mode = 2
+
+[node name="Book" parent="HBox" instance=ExtResource("4_iw03r")]
 layout_mode = 2

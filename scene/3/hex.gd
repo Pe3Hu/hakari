@@ -11,6 +11,7 @@ var ring = null
 var type = null
 var neighbors = {}
 var directions = {}
+var remoteness = null
 #endregion
 
 
@@ -28,7 +29,6 @@ func init_basic_setting() -> void:
 	init_tokens()
 	
 	set_vertexs()
-	#recolor_based_on_ring()
 	set_position_based_on_grid()
 
 
@@ -53,8 +53,8 @@ func init_tokens() -> void:
 	essence.set_attributes(input)
 	essence.custom_minimum_size = Global.vec.size.essence
 	
-	input.type = "hex"
-	input.subtype = "index"
+	input.type = "index"
+	input.subtype = "hex"
 	input.value = 0#proprietor.hexs.get_child_count() - 1
 	index.set_attributes(input)
 	index.custom_minimum_size = Global.vec.size.hex
@@ -81,6 +81,10 @@ func recolor_based_on_ring() -> void:
 
 func recolor_based_on_type() -> void:
 	color = Global.color.hex[type]
+
+
+func recolor_based_on_remoteness() -> void:
+	color = Global.color.remoteness[remoteness]
 
 
 func set_position_based_on_grid() -> void:
@@ -110,6 +114,25 @@ func set_type(type_: String) -> void:
 			proprietor.types[type].append(self)
 
 
+func reset_type(type_: Variant) -> void:
+	if type != null:
+		proprietor.types[type].erase(self)
+	
+	type = null
+	
+	if type_ != null:
+		set_type(type_)
+
+
+func set_remoteness(remoteness_: int) -> void:
+	remoteness = remoteness_
+	
+	if !proprietor.remotenesses.has(remoteness):
+		proprietor.remotenesses[remoteness] = []
+	
+	proprietor.remotenesses[remoteness].append(self)
+
+
 func clean() -> void:
 	for neighbor in neighbors:
 		neighbor.neighbors.erase(self)
@@ -120,6 +143,12 @@ func clean() -> void:
 	
 	proprietor.grids.erase(grid)
 	proprietor.rings[ring].erase(self)
+	
+	if type != null:
+		proprietor.types[type].erase(self)
+	
+	if remoteness != null:
+		proprietor.remotenesses[remoteness].erase(self)
 	
 	get_parent().remove_child(self)
 	queue_free()

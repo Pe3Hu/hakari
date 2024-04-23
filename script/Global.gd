@@ -20,7 +20,12 @@ func _ready() -> void:
 
 
 func init_arr() -> void:
-	arr.hex = ["wire", "connector", "source"]
+	arr.hex = ["wire", "connector", "source", "insulation"]
+	arr.spot = ["wire", "connector"]
+	arr.essence = ["lightning", "fire", "ice", "poison", "bone", "blood", "light", "void", "darkness"]
+	arr.offense = ["whip", "hammer", "spear"]
+	arr.defense = ["parry", "block", "dodge"]
+	arr.role = ["offense", "defense"]
 
 
 func init_num() -> void:
@@ -42,17 +47,25 @@ func init_num() -> void:
 	num.hex.a = 24
 	num.hex.r = num.hex.a * sqrt(3) / 2
 	num.hex.n = 6
+	num.hex.remoteness = 4
 	
 	num.pattern = {}
 	num.pattern.shift = num.hex.n / 2
+	
+	num.thickness = {}
+	num.thickness.spear = 3
+	num.thickness.hammer = 2
+	num.thickness.whip = 1
 
 
 func init_dict() -> void:
 	init_neighbor()
 	init_corner()
 	init_font()
+	init_offense()
 	
 	init_pattern()
+	init_essence()
 
 
 func init_neighbor() -> void:
@@ -140,6 +153,29 @@ func init_font():
 	dict.font.size = {}
 
 
+func init_offense() -> void:
+	#dict.blueprint = {}
+	#dict.blueprint.role = {}
+	dict.offense = {}
+	dict.offense.shifts = {}
+	#var directions = dict.neighbor.cube
+	
+	for offense in arr.offense:
+		dict.offense.shifts[offense] = []
+		var n = num.hex.n / num.thickness[offense]
+		var k = num.thickness[offense]
+		
+		for _i in n:
+			var shifts = []
+			
+			for _j in num.thickness[offense]:
+				#grid += directions[_i]
+				#dict.offense.shifts[offense].append(Vector3(grid))
+				shifts.append(_i * k)
+			
+			dict.offense.shifts[offense].append(shifts)
+
+
 func init_pattern() -> void:
 	dict.pattern = {}
 	dict.pattern.title = {}
@@ -192,6 +228,37 @@ func init_pattern() -> void:
 			dict.pattern.child.erase(pattern.title)
 
 
+func init_essence() -> void:
+	dict.essence = {}
+	dict.essence.title = {}
+	dict.essence.offense = {}
+	dict.essence.defense = {}
+	
+	var exceptions = ["title"]
+	var path = "res://asset/json/hakari_essence.json"
+	var array = load_data(path)
+	
+	for essence in array:
+		var data = {}
+		data.offense = {}
+		data.defense = {}
+		
+		for key in essence:
+			if !exceptions.has(key):
+				for type in data:
+					if arr[type].has(key):
+						data[type][key] = essence[key]
+		
+		for type in data:
+			for subtype in data[type]:
+				if !dict.essence[type].has(subtype):
+					dict.essence[type][subtype] = {}
+				
+				dict.essence[type][subtype][essence.title] = data[type][subtype]
+		
+		dict.essence.title[essence.title] = data
+
+
 func init_scene() -> void:
 	scene.token = load("res://scene/0/token.tscn")
 	
@@ -202,6 +269,9 @@ func init_scene() -> void:
 	scene.area = load("res://scene/2/area.tscn")
 	
 	scene.hex = load("res://scene/3/hex.tscn")
+	
+	scene.page = load("res://scene/4/page.tscn")
+	scene.blueprint = load("res://scene/4/blueprint.tscn")
 
 
 func init_vec():
@@ -227,9 +297,15 @@ func init_color():
 	var h = 360.0
 	
 	color.hex = {}
-	color.hex.source = Color.from_hsv(0 / h, 0.6, 0.7)
-	color.hex.connector = Color.from_hsv(120 / h, 0.6, 0.7)
-	color.hex.wire = Color.from_hsv(210 / h, 0.6, 0.7)
+	color.hex.source = Color.from_hsv(0 / h, 0.9, 0.7)
+	color.hex.connector = Color.from_hsv(120 / h, 0.9, 0.7)
+	color.hex.wire = Color.from_hsv(210 / h, 0.9, 0.7)
+	color.hex.insulation = Color.from_hsv(270 / h, 0.9, 0.7)
+	
+	color.remoteness = {}
+	color.remoteness[1] = Color.from_hsv(20 / h, 0.8, 0.4)
+	color.remoteness[2] = Color.from_hsv(40 / h, 0.8, 0.4)
+	color.remoteness[3] = Color.from_hsv(60 / h, 0.8, 0.4)
 
 
 func save(path_: String, data_: String):

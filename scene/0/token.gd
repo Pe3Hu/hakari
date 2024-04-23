@@ -77,6 +77,9 @@ func set_subtype(subtype_: String) -> void:
 	subtype = subtype_
 	designation.subtype = subtype
 	designation.update_image()
+	
+	if !visible:
+		visible = true
 
 
 func set_type_and_subtype(type_: String, subtype_: String) -> void:

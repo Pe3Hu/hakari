@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://bkaabiqcddbm1"
-path="res://.godot/imported/poision.png-5ade7039488e5cb4e7f09037246e32c3.ctex"
+uid="uid://bqelbn6qcbnp0"
+path="res://.godot/imported/spear.png-f2b84ce233c36ade8611ed0b7a3b3ab6.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://asset/png/essence/poision.png"
-dest_files=["res://.godot/imported/poision.png-5ade7039488e5cb4e7f09037246e32c3.ctex"]
+source_file="res://asset/png/offense/spear.png"
+dest_files=["res://.godot/imported/spear.png-f2b84ce233c36ade8611ed0b7a3b3ab6.ctex"]
 
 [params]
 

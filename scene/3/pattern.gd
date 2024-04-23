@@ -24,6 +24,8 @@ func init_basic_setting() -> void:
 	corners.min = Vector2()
 	corners.max = Vector2()
 	init_hexs()
+	update_size()
+	init_directions()
 
 
 func init_hexs() -> void:
@@ -36,32 +38,31 @@ func init_hexs() -> void:
 	var shift = int(Global.num.pattern.shift)
 	var direction = _directions[shift]
 	
-	for _i in Global.num.hex.n:
-		directions[_i] = []
-	
 	for _i in shifts.size():
 		if _i > 0:
 			shift = (shift - shifts[_i] + _directions.size()) % _directions.size()
 			direction = _directions[shift]
 			gird += direction
 			add_hex(gird)
-			#directions.append(direction)
 		
 		var hex = hexs.get_child(hexs.get_child_count() - 1)
 		hex.set_type(types[_i])
 		update_corners(hex.position)
+
+
+func init_directions() -> void:
+	var _directions = Global.dict.neighbor.cube
+	var shifts = Global.dict.pattern.title[letter].shifts
 	
-	update_size()
-	
-	
-	for _j in Global.num.hex.n:
-		shift = int(Global.num.pattern.shift + _j) % _directions.size()
-		direction = _directions[shift]
+	for _i in Global.num.hex.n:
+		directions[_i] = []
+		var shift = int(Global.num.pattern.shift + _i) % _directions.size()
+		var direction = _directions[shift]
 		
-		for _i in shifts.size():
-			if _i > 0:
-				shift = (shift - shifts[_i] + _directions.size()) % _directions.size()
-				directions[_j].append(direction)
+		for _j in shifts.size():
+			if _j > 0:
+				shift = (shift - shifts[_j] + _directions.size()) % _directions.size()
+				directions[_i].append(direction)
 
 
 func add_hex(grid_: Vector3) -> void:
@@ -99,34 +100,38 @@ func update_size() -> void:
 func check_hex(hex_: Polygon2D) -> bool:
 	var types = Global.dict.pattern.title[letter].types
 	
-	if hex_.type != types.front():
+	if hex_.type != types.front() or hex_.essence.subtype != "empty":
 		return false
 	
-	var hex = hex_
+	#print("___",hex_.index.get_value())
 	
 	for rotate in directions:
+		#print(">", rotate)
 		var flag = true
+		var hex = hex_
 		
 		for _i in directions[rotate].size():
 			if !flag:
 				break
 			
 			var direction = directions[rotate][_i]
+			#print("<", Global.dict.neighbor.cube.find(direction))
 			
 			if hex.directions.has(direction):
 				hex = hex.directions[direction]
+				#print("#",hex.index.get_value())
 				
 				if hex.type != types[_i + 1]:
-					print([hex_.index.get_value(), str(rotate), hex.index.get_value(), "type"])
+					#print([str(rotate), "type"])
 					flag = false
 					break
 				
 				if hex.essence.subtype != "empty":
-					print([hex_.index.get_value(), str(rotate), hex.index.get_value(), "essence"])
+					#print([str(rotate), "essence"])
 					flag = false
 				break
 			else:
-				print([hex_.index.get_value(), str(rotate), hex.index.get_value(), "direction"])
+				#print([str(rotate), "direction"])
 				flag = false
 				break
 		

@@ -1,0 +1,83 @@
+[
+ {
+  "title": "lightning",
+  "spear": 9,
+  "whip": 4,
+  "hammer": 2,
+  "parry": 3,
+  "block": 4,
+  "dodge": 8
+ },
+ {
+  "title": "fire",
+  "spear": 3,
+  "whip": 7,
+  "hammer": 5,
+  "parry": 9,
+  "block": 2,
+  "dodge": 4
+ },
+ {
+  "title": "ice",
+  "spear": 6,
+  "whip": 1,
+  "hammer": 8,
+  "parry": 5,
+  "block": 9,
+  "dodge": 1
+ },
+ {
+  "title": "poison",
+  "spear": 5,
+  "whip": 9,
+  "hammer": 1,
+  "parry": 7,
+  "block": 3,
+  "dodge": 5
+ },
+ {
+  "title": "bone",
+  "spear": 7,
+  "whip": 2,
+  "hammer": 6,
+  "parry": 4,
+  "block": 8,
+  "dodge": 3
+ },
+ {
+  "title": "blood",
+  "spear": 4,
+  "whip": 8,
+  "hammer": 3,
+  "parry": 8,
+  "block": 1,
+  "dodge": 6
+ },
+ {
+  "title": "light",
+  "spear": 1,
+  "whip": 5,
+  "hammer": 9,
+  "parry": 1,
+  "block": 5,
+  "dodge": 9
+ },
+ {
+  "title": "void",
+  "spear": 2,
+  "whip": 6,
+  "hammer": 7,
+  "parry": 6,
+  "block": 7,
+  "dodge": 2
+ },
+ {
+  "title": "darkness",
+  "spear": 8,
+  "whip": 3,
+  "hammer": 4,
+  "parry": 2,
+  "block": 6,
+  "dodge": 7
+ }
+]

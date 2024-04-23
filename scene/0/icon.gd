@@ -49,6 +49,10 @@ func update_image() -> void:
 	path += type + "/" + str(subtype) + ".png"
 	textureRect.texture = load(path)
 	
+	if type == "hex":
+		if subtype == "index":
+			pass
+	
 	#var style = StyleBoxFlat.new()
 	#style.bg_color = Color.SLATE_GRAY
 	#bg.set("theme_override_styles/panel", style)
