@@ -48,3 +48,4 @@ func add_blueprint(title_: String, shift_: int) -> void:
 	var blueprint = Global.scene.blueprint.instantiate()
 	blueprints.add_child(blueprint)
 	blueprint.set_attributes(input)
+#endregion

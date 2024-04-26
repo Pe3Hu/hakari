@@ -64,3 +64,4 @@ func init_hexs() -> void:
 				readiness.change_value(value)
 				value = Global.dict.essence.offense[designation.subtype][hex.essence.subtype]
 				power.change_value(value)
+#endregion

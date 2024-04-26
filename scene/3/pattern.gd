@@ -24,6 +24,7 @@ func init_basic_setting() -> void:
 	corners.min = Vector2()
 	corners.max = Vector2()
 	init_hexs()
+	init_essences()
 	update_size()
 	init_directions()
 
@@ -50,21 +51,6 @@ func init_hexs() -> void:
 		update_corners(hex.position)
 
 
-func init_directions() -> void:
-	var _directions = Global.dict.neighbor.cube
-	var shifts = Global.dict.pattern.title[letter].shifts
-	
-	for _i in Global.num.hex.n:
-		directions[_i] = []
-		var shift = int(Global.num.pattern.shift + _i) % _directions.size()
-		var direction = _directions[shift]
-		
-		for _j in shifts.size():
-			if _j > 0:
-				shift = (shift - shifts[_j] + _directions.size()) % _directions.size()
-				directions[_i].append(direction)
-
-
 func add_hex(grid_: Vector3) -> void:
 	var input = {}
 	input.proprietor = self
@@ -86,6 +72,11 @@ func update_corners(vector_: Vector2) -> void:
 		corners.max.x = vector_.x
 
 
+func init_essences() -> void:
+	for hex in hexs.get_children():
+		hex.roll_essence()
+
+
 func update_size() -> void:
 	corners.min.x -= Global.num.hex.a
 	corners.min.y -= Global.num.hex.r
@@ -94,6 +85,21 @@ func update_size() -> void:
 	
 	custom_minimum_size = corners.max - corners.min
 	hexs.position = -corners.min
+
+
+func init_directions() -> void:
+	var _directions = Global.dict.neighbor.cube
+	var shifts = Global.dict.pattern.title[letter].shifts
+	
+	for _i in Global.num.hex.n:
+		directions[_i] = []
+		var shift = int(Global.num.pattern.shift + _i) % _directions.size()
+		var direction = _directions[shift]
+		
+		for _j in shifts.size():
+			if _j > 0:
+				shift = (shift - shifts[_j] + _directions.size()) % _directions.size()
+				directions[_i].append(direction)
 #endregion
 
 

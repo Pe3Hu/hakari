@@ -133,6 +133,11 @@ func set_remoteness(remoteness_: int) -> void:
 	proprietor.remotenesses[remoteness].append(self)
 
 
+func roll_essence() -> void:
+	var _essence = Global.arr.essence.pick_random()
+	essence.set_subtype(_essence)
+
+
 func clean() -> void:
 	for neighbor in neighbors:
 		neighbor.neighbors.erase(self)

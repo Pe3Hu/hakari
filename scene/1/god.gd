@@ -23,4 +23,8 @@ func init_basic_setting() -> void:
 	grimoire.set_attributes(input)
 	groove.set_attributes(input)
 	book.set_attributes(input)
+	
+	grimoire.refill_starter_essence()
+	#var pattern = groove.patterns.get_child(groove.patterns.get_child_count()-1)
+	groove.refill_constellations()
 #endregion

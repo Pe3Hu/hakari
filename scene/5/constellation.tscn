@@ -1,10 +1,11 @@
-[gd_scene load_steps=3 format=3 uid="uid://blu22hthbk1uj"]
+[gd_scene load_steps=4 format=3 uid="uid://buvs6hnfqhbs0"]
 
-[ext_resource type="Script" path="res://scene/3/groove.gd" id="1_nb8tc"]
+[ext_resource type="Script" path="res://scene/5/constellation.gd" id="1_ayrem"]
+[ext_resource type="PackedScene" path="res://scene/0/token.tscn" id="2_dq8ya"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_7paps"]
 
-[node name="Groove" type="MarginContainer"]
+[node name="Constellation" type="MarginContainer"]
 custom_minimum_size = Vector2(5, 5)
 anchors_preset = 8
 anchor_left = 0.5
@@ -19,7 +20,7 @@ grow_horizontal = 2
 grow_vertical = 2
 size_flags_horizontal = 4
 size_flags_vertical = 4
-script = ExtResource("1_nb8tc")
+script = ExtResource("1_ayrem")
 
 [node name="BG" type="Panel" parent="."]
 visible = false
@@ -31,17 +32,10 @@ layout_mode = 2
 theme_override_constants/separation = 0
 alignment = 1
 
-[node name="Indexs" type="VBoxContainer" parent="HBox"]
+[node name="Stars" type="HBoxContainer" parent="HBox"]
 layout_mode = 2
 theme_override_constants/separation = 0
 alignment = 1
 
-[node name="Patterns" type="VBoxContainer" parent="HBox"]
+[node name="Appraisal" parent="HBox" instance=ExtResource("2_dq8ya")]
 layout_mode = 2
-theme_override_constants/separation = 5
-alignment = 1
-
-[node name="Constellations" type="VBoxContainer" parent="HBox"]
-layout_mode = 2
-theme_override_constants/separation = 5
-alignment = 1

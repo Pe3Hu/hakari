@@ -269,9 +269,13 @@ func init_scene() -> void:
 	scene.area = load("res://scene/2/area.tscn")
 	
 	scene.hex = load("res://scene/3/hex.tscn")
+	scene.pattern = load("res://scene/3/pattern.tscn")
 	
 	scene.page = load("res://scene/4/page.tscn")
 	scene.blueprint = load("res://scene/4/blueprint.tscn")
+	
+	scene.constellation = load("res://scene/5/constellation.tscn")
+	scene.star = load("res://scene/5/star.tscn")
 
 
 func init_vec():
@@ -345,3 +349,87 @@ func get_random_key(dict_: Dictionary):
 	
 	print("!bug! index_r error in get_random_key func")
 	return null
+
+
+func get_all_constituents_based_on_size_without_repeats(array_: Array, size_: int) -> Array:
+	var constituents = get_all_constituents_based_on_size(array_, size_)
+	var result = []
+	
+	for constituent in constituents:
+		constituent.sort_custom(func(a, b): return array_.find(a) < array_.find(b))
+		
+		if !result.has(constituent):
+			result.append(constituent)
+	
+	return result
+
+
+func get_all_constituents_based_on_size(array_: Array, size_: int) -> Array:
+	var constituents = get_all_constituents(array_)
+	constituents = constituents[size_]
+	
+	for _i in constituents.size():
+		for _j in size_ - 1:
+			var constituent = []
+			constituent.append_array(constituents[_i])
+			
+			for _l in _j + 1:
+				var element = constituent.pop_front()
+				constituent.append(element)
+			
+			constituents.append(constituent)
+	return constituents
+
+
+func get_all_constituents(array_: Array) -> Dictionary:
+	var constituents = {}
+	constituents[0] = []
+	constituents[1] = []
+	
+	for child in array_:
+		constituents[0].append(child)
+		constituents[1].append([child])
+	
+	for _i in array_.size()-2:
+		set_constituents_based_on_size(constituents, _i+2)
+	
+	constituents[array_.size()] = [constituents[0]]
+	constituents.erase(0)
+	return constituents
+
+
+func set_constituents_based_on_size(constituents_: Dictionary, size_: int) -> void:
+	var parents = constituents_[size_-1]
+	constituents_[size_] = []
+	
+	for parent in parents:
+		for child in constituents_[0]:
+			if !parent.has(child):
+				var constituent = []
+				constituent.append_array(parent)
+				constituent.append(child)
+				constituent.sort_custom(func(a, b): return constituents_[0].find(a) < constituents_[0].find(b))
+				
+				if !constituents_[size_].has(constituent):
+					constituents_[size_].append(constituent)
+
+
+func get_all_multiplications(array_: Array) -> Array:
+	var multiplications = []
+	multiplications.append_array(array_.front())
+	
+	for _i in range(1, array_.size(), 1):
+		multiplications = get_cartesian_product(multiplications, array_[_i])
+	
+	return multiplications
+
+
+func get_cartesian_product(a_: Array, b_: Array) -> Array:
+	var result = []
+	
+	for _a in a_:
+		for _b in b_:
+			var pair = [_a, _b]
+			result.append(pair)
+	
+	return result
